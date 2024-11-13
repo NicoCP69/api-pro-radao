@@ -1,0 +1,14 @@
+// render.yaml
+services:
+  - type: web
+    name: radao-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false  # Vous configurerez ceci dans le dashboard Render
+      - key: JWT_SECRET
+        sync: false  # Vous configurerez ceci dans le dashboard Render
