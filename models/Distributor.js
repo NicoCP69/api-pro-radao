@@ -1,3 +1,5 @@
+import mongoose from 'mongoose';
+
 const distributorSchema = new mongoose.Schema(
   {
     token: {
@@ -8,8 +10,8 @@ const distributorSchema = new mongoose.Schema(
     spv: {
       enabled: Boolean,
       provider: {
-        type: String,
-        enum: ['ibex', 'radao', 'shares'],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SpvProvider',
         required: function () {
           return this.spv.enabled;
         },
@@ -19,14 +21,14 @@ const distributorSchema = new mongoose.Schema(
       enabled: Boolean,
       config: {
         theme: {
-          type: String,
-          enum: ['red', 'green', 'black', 'blue', 'gray'],
-          default: 'blue',
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Theme',
+          default: null,
         },
         font: {
-          type: String,
-          enum: ['Inter', 'Roboto', 'Poppins', 'Arial', 'Helvetica'],
-          default: 'Inter',
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Font',
+          default: null,
         },
         title: String,
         widgetId: {
@@ -45,3 +47,5 @@ const distributorSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+export default mongoose.model('Distributor', distributorSchema);
