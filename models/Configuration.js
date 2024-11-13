@@ -7,17 +7,28 @@ const spvProviderSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    displayName: String,
+    displayName: {
+      type: String,
+      required: true,
+    },
+    description: String,
+    website: String,
+    contactEmail: String,
     isActive: {
       type: Boolean,
       default: true,
     },
-    order: Number,
+    order: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
   }
 );
+
+export const SpvProvider = mongoose.model('SpvProvider', spvProviderSchema);
 
 const themeSchema = new mongoose.Schema(
   {

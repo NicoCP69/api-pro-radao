@@ -10,8 +10,8 @@ const issuerSchema = new mongoose.Schema(
       default: false,
     },
     spvProvider: {
-      type: String,
-      enum: ['chainr-ou', 'chainr-sas', 'chainr-uab'],
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'SpvProvider',
       required: function () {
         return this.spvEnabled;
       },
@@ -35,3 +35,5 @@ const issuerSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+export default mongoose.model('Issuer', issuerSchema);
