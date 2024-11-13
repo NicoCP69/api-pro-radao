@@ -2,13 +2,17 @@
 services:
   - type: web
     name: radao-api
-    env: node
+    runtime: node
+    plan: free
     buildCommand: npm install
     startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 3000
       - key: MONGODB_URI
-        sync: false  # Vous configurerez ceci dans le dashboard Render
+        sync: false
       - key: JWT_SECRET
-        sync: false  # Vous configurerez ceci dans le dashboard Render
+        sync: false
+    autoDeploy: true
